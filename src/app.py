@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 from PIL import Image
-import io
 
 # 🔗 Ngrok Backend URL
 BACKEND_URL = "https://5a66-35-192-211-198.ngrok-free.app/process"  # Change if needed
@@ -9,23 +8,21 @@ BACKEND_URL = "https://5a66-35-192-211-198.ngrok-free.app/process"  # Change if 
 # ---------- Sidebar Content ----------
 st.sidebar.title("📘 About Dialekt")
 st.sidebar.markdown("""
-**Dialekt** is a small tool built for real-life help — especially for people who find it hard to read signs in French or Arabic.
+**Dialekt** is a lightweight tool designed to help Tunisians understand signs and documents in French or Arabic — quickly translated into the Tunisian dialect.
 
-🧩 **What it solves**  
-Many signs are in foreign languages. We make them simple by converting them to **Tunisian dialect**.
+🧩 **Solves**  
+Foreign-language signs → Local understanding
 
-⚙️ **Built with**  
-- EasyOCR & Tesseract  
-- Python + Streamlit + Colab  
-- Light, fast and no setup mess
+🛠 **Stack**  
+EasyOCR, Tesseract, Python, Colab, Streamlit
 
-🚀 **What’s next**  
-- Voice translation in Tunisian  
-- Smarter ML-based translation  
-- Support for PDFs and forms
+🚀 **Next Goals**
+- ✅ Voice output in Tunisian  
+- ✅ ML-based smarter translation  
+- ⏳ PDF and form support  
 """)
 st.sidebar.markdown("---")
-st.sidebar.caption("💡 Tip: Light mode gives the cleanest look")
+st.sidebar.caption("💡 Tip: Use light mode for cleanest view.")
 
 # ---------- Custom CSS ----------
 st.markdown("""
@@ -42,7 +39,7 @@ st.markdown("""
     }
     .stImage>div>img {
         border-radius: 0px !important;
-        height: 320px;
+        height: 320px !important;
         object-fit: contain;
     }
     .feature-box {
@@ -110,3 +107,51 @@ if uploaded_file:
             else:
                 st.error("❌ Error processing the image. Please try another one.")
 
+# ---------- Expandable: About the Project ----------
+with st.expander("📘 About the Project"):
+    st.markdown("""
+### 🎯 Inspiration
+During a hackathon, we noticed a real issue — most signs and forms in Tunisia are in French or Arabic, making them hard for locals to understand. So we built a simple tool that lets users upload an image and get it translated to plain Tunisian dialect.
+
+---
+
+### 🛠 How We Built It
+- **OCR Engine**: Tesseract for Arabic and French recognition  
+- **Translator**: Rule-based converter for Tunisian expressions  
+- **Backend**: Google Colab + Ngrok  
+- **Frontend**: Streamlit  
+- **Style**: Pure CSS for minimal, clean UI  
+
+---
+
+### 🚧 Challenges
+- Poor image quality breaks OCR  
+- Tunisian dialect lacks a formal structure, so translation had to be manual  
+- Limited time meant keeping things extremely lightweight  
+- Streamlit customization is basic — required CSS hacks  
+
+---
+
+### ✅ Accomplishments
+- Upload → Extract → Translate in one smooth flow  
+- Fully online — no local setup needed  
+- Clean, non-distracting UI  
+- Lightweight and fast
+
+---
+
+### 🧠 What We Learned
+- OCR’s real-world limitations  
+- How to keep things user-focused and simple  
+- Customizing Streamlit layout creatively  
+- Value of small, focused MVPs  
+
+---
+
+### 📌 What’s Next:
+- ✅ Add voice output for the translated text  
+- ✅ Improve dialect translation using ML  
+- ✅ Support for PDFs, legal forms  
+- ✅ Mobile-friendly UI and packaging as a PWA  
+
+""")
